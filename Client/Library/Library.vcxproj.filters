@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Responsive">
+      <UniqueIdentifier>{bafb412c-5041-4789-a61a-e63a0c548ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Responsive">
+      <UniqueIdentifier>{8c0d0402-bb78-416f-99a8-db8dea817e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Responsive\OkieResponsive">
+      <UniqueIdentifier>{08665474-5db4-4cf9-95f6-7a69feb73120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Responsive\OkieResponsive">
+      <UniqueIdentifier>{fc89d9db-d4e2-40d4-a021-17011766b9b2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AuthenHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistryHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInputLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LanguageResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NotifyIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CpprestRequestImp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BizTeleworkInstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AppConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LastActivityLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GettingRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreatedResponsive.cpp">
+      <Filter>Source Files\Responsive</Filter>
+    </ClCompile>
+    <ClCompile Include="Responsive.cpp">
+      <Filter>Source Files\Responsive</Filter>
+    </ClCompile>
+    <ClCompile Include="BadRequestResponsive.cpp">
+      <Filter>Source Files\Responsive</Filter>
+    </ClCompile>
+    <ClCompile Include="UnauthorizedResponsive.cpp">
+      <Filter>Source Files\Responsive</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerErrorResponsive.cpp">
+      <Filter>Source Files\Responsive</Filter>
+    </ClCompile>
+    <ClCompile Include="ActiveApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OkieResponsive.cpp">
+      <Filter>Source Files\Responsive\OkieResponsive</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeCardOkieResponsive.cpp">
+      <Filter>Source Files\Responsive\OkieResponsive</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthenticateOkieResponsive.cpp">
+      <Filter>Source Files\Responsive\OkieResponsive</Filter>
+    </ClCompile>
+    <ClCompile Include="ContextMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkLogOkieResponsive.cpp">
+      <Filter>Source Files\Responsive\OkieResponsive</Filter>
+    </ClCompile>
+    <ClCompile Include="ToastNotification.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AuthenHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CallContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CpprestRequestImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpStatusCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LanguageResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LanguageResourceInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NotifyIcon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NotifyIconInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistryHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInputLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsHookInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BizTeleworkInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestWorkLogsType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AppConfigInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AppConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LastActivityLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GettingRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Responsive.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponsiveCreator.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="CreatedResponsive.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="BadRequestResponsive.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="UnauthorizedResponsive.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerErrorResponsive.h">
+      <Filter>Header Files\Responsive</Filter>
+    </ClInclude>
+    <ClInclude Include="RequestHealthStatusType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OkieResponsive.h">
+      <Filter>Header Files\Responsive\OkieResponsive</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeCardOkieResponsive.h">
+      <Filter>Header Files\Responsive\OkieResponsive</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthenticateOkieResponsive.h">
+      <Filter>Header Files\Responsive\OkieResponsive</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextMenuInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveInformation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkLogOkieResponsive.h">
+      <Filter>Header Files\Responsive\OkieResponsive</Filter>
+    </ClInclude>
+    <ClInclude Include="ToastNotification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\BizTelework\ReadMe.txt" />
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

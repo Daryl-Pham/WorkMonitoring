@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+    <!-- Write parameters for testing. -->
+    <?define TestParameter.UpgradeCode = "{ED6E254E-1C15-4480-8AFE-24C958C2BB2E}" ?>
+    <?define TestParameter.Version = "1.0.0.0" ?>
+</Include>

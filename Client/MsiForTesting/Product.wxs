@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <?include TestParameter.wxi ?>
+    <Product Id="*" Name="MsiForTesting" Language="1033" Version="$(var.TestParameter.Version)" Manufacturer="MsiForTesting" UpgradeCode="$(var.TestParameter.UpgradeCode)">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+        <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+
+        <Feature Id="ProductFeature" Title="MsiForTesting" Level="1">
+            <ComponentGroupRef Id="ProductComponents" />
+        </Feature>
+    </Product>
+
+    <!-- Variables -->
+    <?if $(var.Platform) = x64 ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+    <?else?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+    <?endif?>
+
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="$(var.PlatformProgramFilesFolder)">
+                <Directory Id="INSTALLFOLDER" Name="MsiForTesting" />
+            </Directory>
+        </Directory>
+    </Fragment>
+
+    <Fragment>
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            <Component Id="Content">
+                <File Name="content.txt" Source="content.txt" KeyPath="yes" Vital="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

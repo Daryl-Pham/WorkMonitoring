@@ -1,0 +1,9 @@
+[
+    uuid(D74EE295-2289-4791-97E1-78619113A82F),
+    version(1.0)
+]
+interface Control
+{
+    void Hello([in, string] const wchar_t* String);
+    void Hello2([in, out, string, size_is(1024)] wchar_t Destination[]);
+}

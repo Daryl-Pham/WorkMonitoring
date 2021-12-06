@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+    <!--
+    このファイルは仕向け用カスタマイズ項目を設定するためのファイルである。
+    -->
+    <?define Customize.ProductName = "Optimal Biz Telework Staging" ?>
+    <?define Customize.UpgradeCode = "{FAA6E927-A8B8-41DF-870B-D4EDFE3729B}" ?>
+    <?define Customize.ApiUrl = "https://localhost.com/" ?>
+    <?define Customize.UpdateUrl = "https://localhost.com/" ?>
+    <?define Customize.ReleaseEnvironment = "Staging" ?>
+</Include>

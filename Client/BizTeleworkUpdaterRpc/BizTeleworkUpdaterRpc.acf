@@ -1,0 +1,9 @@
+// http://msdn.microsoft.com/en-us/library/aa366717(v=VS.85).aspx
+//
+
+[
+implicit_handle(handle_t BizTeleworkUpdaterRpc_IfHandle)
+]
+interface BizTeleworkUpdaterRpc
+{
+}

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{146a2ea3-5ebf-45fb-b24a-9c94e002b837}</ProjectGuid>
+    <RootNamespace>UnitTestBizTeleworkUpdater</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <VcpkgTriplet Condition="'$(Platform)'=='Win32'">x86-windows-static</VcpkgTriplet>
+    <VcpkgTriplet Condition="'$(Platform)'=='x64'">x64-windows-static</VcpkgTriplet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../BizTeleworkUpdater;../Library;../BizTeleworkUpdaterRpc/gen/$(PlatformTarget);$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../BizTeleworkUpdater;../Library;../BizTeleworkUpdaterRpc/gen/$(PlatformTarget);$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../BizTeleworkUpdater;../Library;../BizTeleworkUpdaterRpc/gen/$(PlatformTarget);$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../BizTeleworkUpdater;../Library;../BizTeleworkUpdaterRpc/gen/$(PlatformTarget);$(IncludePath)</IncludePath>
+    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_NO_ASYNCRTIMP;BIZ_TELEWORK_UPDATER_TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Library.lib;bcrypt.lib;crypt32.lib;winhttp.lib;httpapi.lib;msi.lib;nafxcwd.lib;libcmtd.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>nafxcwd.lib;libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_NO_ASYNCRTIMP;BIZ_TELEWORK_UPDATER_TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Library.lib;bcrypt.lib;crypt32.lib;winhttp.lib;httpapi.lib;msi.lib;nafxcw.lib;libcmt.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>nafxcw.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_NO_ASYNCRTIMP;BIZ_TELEWORK_UPDATER_TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Library.lib;bcrypt.lib;crypt32.lib;winhttp.lib;httpapi.lib;msi.lib;nafxcwd.lib;libcmtd.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>nafxcwd.lib;libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_NO_ASYNCRTIMP;BIZ_TELEWORK_UPDATER_TESTING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Library.lib;bcrypt.lib;crypt32.lib;winhttp.lib;httpapi.lib;msi.lib;nafxcw.lib;libcmt.lib;Dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>nafxcw.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\BizTeleworkUpdaterRpc\gen\$(PlatformTarget)\BizTeleworkUpdaterRpc_s.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\AppExecutionCondition.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\AppExecutor.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\AppVersion.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\BizTeleworkUpdaterRpcServer.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\ConfigUtility.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\InstallerExecutor.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\InstallerFetcher.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\InstallerValidator.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\PaceMaker.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\SessionEnumerator.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\UpdateChecker.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\UpdateProcess.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\UpdaterService.cpp" />
+    <ClCompile Include="..\BizTeleworkUpdater\UpdaterServiceMain.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestAppExecutionCondition.cpp" />
+    <ClCompile Include="TestAppExecutor.cpp" />
+    <ClCompile Include="TestAppVersion.cpp" />
+    <ClCompile Include="TestInstallerExecutor.cpp" />
+    <ClCompile Include="TestInstallerFetcher.cpp" />
+    <ClCompile Include="TestInstallerValidator.cpp" />
+    <ClCompile Include="TestPaceMaker.cpp" />
+    <ClCompile Include="TestSessionEnumerator.cpp" />
+    <ClCompile Include="TestUpdateProcess.cpp" />
+    <ClCompile Include="TestUpdaterChecker.cpp" />
+    <ClCompile Include="TestUpdaterService.cpp" />
+    <ClCompile Include="TestUpdaterServiceMain.cpp" />
+    <ClCompile Include="UtilityForTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BizTeleworkUpdaterRpc\gen\$(PlatformTarget)\BizTeleworkUpdaterRpc_h.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\AppExecutionCondition.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\AppExecutor.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\AppVersion.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\BizTeleworkUpdaterRpcServer.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\ConfigUtility.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\InstallerExecutor.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\InstallerFetcher.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\InstallerValidator.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\PaceMaker.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\SessionEnumerator.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\UpdateChecker.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\UpdateProcess.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\UpdaterService.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\UpdaterServiceInterface.h" />
+    <ClInclude Include="..\BizTeleworkUpdater\UpdaterServiceMain.h" />
+    <ClInclude Include="Mock.h" />
+    <ClInclude Include="UtilityForTest.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

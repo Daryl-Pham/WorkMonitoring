@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+    <!--
+    このファイルは仕向け用カスタマイズ項目を設定するためのファイルである。
+    -->
+    <?define Customize.ProductName = "Optimal Biz Telework Development" ?>
+    <?define Customize.UpgradeCode = "{47845D50-01E6-40FF-8B53-14F664BFB13A}" ?>
+    <?define Customize.ApiUrl = "https://localhost.com/" ?>
+    <?define Customize.UpdateUrl = "https://localhost.com/" ?>
+    <?define Customize.ReleaseEnvironment = "Development" ?>
+    <?define Customize.TimerIntervalToRemidOnDutyDialog = "300"?>
+    <?define Customize.TimeToShowOnDutyDialog = "900"?>
+    <?define Customize.TimeToShowHealthStatusDialog = "39600"?>
+</Include>

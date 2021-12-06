@@ -1,0 +1,12 @@
+//
+// control.acf
+//
+// http://msdn.microsoft.com/en-us/library/aa366717(v=VS.85).aspx
+//
+
+[
+implicit_handle(handle_t control_IfHandle)
+]
+interface pipo
+{
+}
