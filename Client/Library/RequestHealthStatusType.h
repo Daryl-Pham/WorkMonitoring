@@ -1,8 +1,0 @@
-#pragma once
-
-enum class RequestHealthStatusType
-{
-    REQUEST_HEALTH_STATUS_TYPE_GOOD,
-    REQUEST_HEALTH_STATUS_TYPE_NORMAL,
-    REQUEST_HEALTH_STATUS_TYPE_BAD,
-};
