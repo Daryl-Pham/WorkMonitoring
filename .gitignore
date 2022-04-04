@@ -1,0 +1,6 @@
+/Client/WorksMonitoring/Debug
+/Client/WorksMonitoring/MainLibrary/Debug
+/Client/WorksMonitoring/*.db
+/Client/WorksMonitoring/WorksMonitoring/Debug
+/Client/WorksMonitoring/ipch/WORKSMONITORING-6ad9d37d/*.ipch
+/Client/WorksMonitoring/ipch/MAINLIBRARY-b822e1f9/*.ipch
