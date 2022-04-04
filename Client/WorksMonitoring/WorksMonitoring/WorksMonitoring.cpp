@@ -1,11 +1,8 @@
-// RemoteWorkClient.cpp : Defines the entry point for the application.
+// WorksMonitoring.cpp : Defines the entry point for the application.
 //
 
-#include "framework.h"
-#include "RemoteWorkClient.h"
-#include "Sample.h"
-#include <hstring.h>
-#include <string>
+#include "stdafx.h"
+#include "WorksMonitoring.h"
 
 #define MAX_LOADSTRING 100
 
@@ -20,33 +17,6 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-class ToastStringWrapper
-{
-public:
-    ToastStringWrapper(PCWSTR stringRef, UINT32 length) noexcept
-    {
-        HRESULT hr = E_FAIL;
-        if (!SUCCEEDED(hr))
-        {
-            RaiseException(static_cast<DWORD>(STATUS_INVALID_PARAMETER), EXCEPTION_NONCONTINUABLE, 0, nullptr);
-        }
-    }
-
-    ToastStringWrapper(const std::wstring& stringRef) noexcept
-    {
-        HRESULT hr = E_FAIL;
-        if (FAILED(hr))
-        {
-            RaiseException(static_cast<DWORD>(STATUS_INVALID_PARAMETER), EXCEPTION_NONCONTINUABLE, 0, nullptr);
-        }
-    }
-
-private:
-    HSTRING m_Hstring;
-    HSTRING_HEADER m_Header;
-
-};
-
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -55,16 +25,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    int test = 0;
-
-    const std::wstring testString = L"Pham ";
-    size_t l = testString.length();
-
     // TODO: Place code here.
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_REMOTEWORKCLIENT, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_WORKSMONITORING, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // Perform application initialization:
@@ -73,7 +38,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_REMOTEWORKCLIENT));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WORKSMONITORING));
 
     MSG msg;
 
@@ -108,10 +73,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_REMOTEWORKCLIENT));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WORKSMONITORING));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_REMOTEWORKCLIENT);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WORKSMONITORING);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -130,9 +95,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-    Sample sample;
-    sample.DisplaySample();
-
    hInst = hInstance; // Store instance handle in our global variable
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
@@ -143,7 +105,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
-   ShowWindow(hWnd, SW_HIDE);
+   ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
    return TRUE;
@@ -152,7 +114,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
-//  PURPOSE: Processes messages for the main window.
+//  PURPOSE:  Processes messages for the main window.
 //
 //  WM_COMMAND  - process the application menu
 //  WM_PAINT    - Paint the main window
