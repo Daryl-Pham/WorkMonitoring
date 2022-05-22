@@ -8,3 +8,8 @@
 /Client/WorksMonitoring/WMService/Debug
 /Client/WorksMonitoring/*.opendb
 /Client/WorksMonitoring/ipch/WMSERVICE-4862ca43/*.ipch
+/Client/WorksMonitoring/WMHook/Debug/*.log
+/Client/WorksMonitoring/WMHook/Debug/*.obj
+/Client/WorksMonitoring/WMHook/Debug
+/Client/WorksMonitoring/ipch/MAINLIBRARY-dcb8f64d/*.ipch
+/Client/WorksMonitoring/ipch/WMHOOK-c35073a3/*.ipch
