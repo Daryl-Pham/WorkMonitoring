@@ -13,3 +13,9 @@
 /Client/WorksMonitoring/WMHook/Debug
 /Client/WorksMonitoring/ipch/MAINLIBRARY-dcb8f64d/*.ipch
 /Client/WorksMonitoring/ipch/WMHOOK-c35073a3/*.ipch
+/Client/WorksMonitoring/.vs
+/Client/WorksMonitoring/MainLibrary/x64/Debug
+/Client/WorksMonitoring/WMHook/x64/Debug
+/Client/WorksMonitoring/ipch/MAINLIBRARY-ec6bf97c
+/Client/WorksMonitoring/ipch/WMHOOK-9419e012/*.ipch
+/Client/WorksMonitoring/x64/Debug
