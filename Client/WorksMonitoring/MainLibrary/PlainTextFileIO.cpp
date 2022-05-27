@@ -2,99 +2,99 @@
 #include "PlainTextFileIO.h"
 
 template <typename Type>
-void PlainTextFileIO::write(const Type& contentToWrite, bool appendContent)
+void PlainTextFileIO::Write(const Type& contentToWrite, bool appendContent)
 {
 
-	if (appendContent) { open(std::ios::out | std::ios::in | std::ios::app); }
-	else { open(std::ios::out | std::ios::in | std::ios::trunc); }
+	if (appendContent) { Open(std::ios::out | std::ios::in | std::ios::app); }
+	else { Open(std::ios::out | std::ios::in | std::ios::trunc); }
 
-	fileStream << contentToWrite;
+	m_FileStream << contentToWrite;
 }
 
 /// Reads text content word by word
-std::string PlainTextFileIO::readWithOffset(std::size_t offset)
+std::string PlainTextFileIO::ReadWithOffset(std::size_t offset)
 {
 
 	std::string readContent;
-	open(std::ios::in);
+	Open(std::ios::in);
 	if (offset > 0) {
-		seekInputPosition(offset);
+		SeekInputPosition(offset);
 	}
-	fileStream >> readContent;
+	m_FileStream >> readContent;
 
 	return readContent;
 }
 
 /// Reads text content word by word
-std::string PlainTextFileIO::read()
+std::string PlainTextFileIO::Read()
 {
-	return readWithOffset(0);
+	return ReadWithOffset(0);
 }
 
-std::string PlainTextFileIO::getline()
+std::string PlainTextFileIO::GetLine()
 {
 
 	std::string s;
 
-	open(std::ios::in);
-	std::getline(fileStream, s);
+	Open(std::ios::in);
+	std::getline(m_FileStream, s);
 
 	return s;
 }
 
 
-std::string PlainTextFileIO::safeRead()
+std::string PlainTextFileIO::SafeRead()
 {
 
 	std::string readContent;
-	open(std::ios::in);
-	fileStream >> readContent;
+	Open(std::ios::in);
+	m_FileStream >> readContent;
 
-	if ((fileStream.eof() && readContent.empty()) || fileStream.fail()) {
+	if ((m_FileStream.eof() && readContent.empty()) || m_FileStream.fail()) {
 		return nullptr;
 	}
 
 	return readContent;
 }
 
-std::string PlainTextFileIO::safeGetline()
+std::string PlainTextFileIO::SafeGetLine()
 {
 
 	std::string s;
 
-	open(std::ios::in);
-	std::getline(fileStream, s);
+	Open(std::ios::in);
+	std::getline(m_FileStream, s);
 
-	if ((fileStream.eof() && s.empty()) || fileStream.fail()) {
+	if ((m_FileStream.eof() && s.empty()) || m_FileStream.fail()) {
 		return nullptr;
 	}
 
 	return s;
 }
 
-std::string PlainTextFileIO::toString()
+std::string PlainTextFileIO::ToString()
 {
 
-	this->open(std::ios::in);
+	this->Open(std::ios::in);
 
 	std::string line;
 	std::string outputContent;
 
-	while (std::getline(fileStream, line)) {
+	while (std::getline(m_FileStream, line)) {
 		outputContent += line + '\n';
 	}
 
 	return outputContent;
 }
 
-std::string PlainTextFileIO::toString(const std::string& fileName)
+std::string PlainTextFileIO::ToString(const std::string& fileName)
 {
-	return PlainTextFileIO(fileName).toString();
+	return PlainTextFileIO(fileName).ToString();
 }
 
-void PlainTextFileIO::saveTextTo(const std::string& fileName, const std::string& text)
+void PlainTextFileIO::SaveTextTo(const std::string& fileName, const std::string& text)
 {
 	PlainTextFileIO fileToWrite(fileName);
-	fileToWrite.open(std::ios::out);
-	fileToWrite.write(text);
+	fileToWrite.Open(std::ios::out);
+	fileToWrite.Write(text);
 }

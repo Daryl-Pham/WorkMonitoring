@@ -8,23 +8,23 @@ public:
 	PlainTextFileIO(const std::string& fileName) : BaseFileIO(fileName) {}
 
 	template <typename Type>
-	void write(const Type& contentToWrite, bool appendContent = true);
+	void Write(const Type& contentToWrite, bool appendContent = true);
 
 	// Reads text content word by word
-	std::string readWithOffset(std::size_t offset = 0);
+	std::string ReadWithOffset(std::size_t offset = 0);
 
 	// Reads text content word by word
-	std::string read();
+	std::string Read();
 
-	std::string getline();
+	std::string GetLine();
 
-	std::string safeRead();
+	std::string SafeRead();
 
-	std::string safeGetline();
+	std::string SafeGetLine();
 
-	std::string toString();
+	std::string ToString();
 
-	static std::string toString(const std::string& fileName);
+	static std::string ToString(const std::string& fileName);
 
-	static void saveTextTo(const std::string& fileName, const std::string& text);
+	static void SaveTextTo(const std::string& fileName, const std::string& text);
 };

@@ -1,18 +1,18 @@
 #include "stdafx.h"
 #include "BaseFileIO.h"
 
-void BaseFileIO::open(const std::ios_base::openmode inputOutputMode) noexcept(false)
+void BaseFileIO::Open(const std::ios_base::openmode inputOutputMode) noexcept(false)
 {
-	if (this->inputOutputMode == inputOutputMode)
+	if (this->m_InputOutputMode == inputOutputMode)
 	{
 		return;
 	}
 
-	close();
-	this->inputOutputMode = inputOutputMode;
-	fileStream.open(fileName_, inputOutputMode);
+	Close();
+	this->m_InputOutputMode = inputOutputMode;
+	m_FileStream.open(m_FileName, inputOutputMode);
 
-	if (fileStream.fail())
+	if (m_FileStream.fail())
 	{
 		throw OpenCloseException("File couldn't be open");
 	}
@@ -20,46 +20,46 @@ void BaseFileIO::open(const std::ios_base::openmode inputOutputMode) noexcept(fa
 
 BaseFileIO::BaseFileIO(const std::string& fileName)
 {
-	this->fileName_ = fileName;
+	this->m_FileName = fileName;
 }
 
-bool BaseFileIO::exists(const std::string& filePath)
+bool BaseFileIO::Exists(const std::string& filePath)
 {
 	std::ifstream file(filePath);
 	return !file.fail();
 }
 
-void BaseFileIO::seekInputPosition(std::size_t offsetPosition, std::ios_base::seekdir position)
+void BaseFileIO::SeekInputPosition(std::size_t offsetPosition, std::ios_base::seekdir position)
 {
-	fileStream.seekg(offsetPosition, position);
+	m_FileStream.seekg(offsetPosition, position);
 }
 
-void BaseFileIO::open(const std::string& fileName)
+void BaseFileIO::Open(const std::string& fileName)
 {
-	this->fileName_ = fileName;
-	this->close();
+	this->m_FileName = fileName;
+	this->Close();
 }
 
-bool BaseFileIO::endOfFile() const
+bool BaseFileIO::EndOfFile() const
 {
-	return fileStream.eof();
+	return m_FileStream.eof();
 }
 
-std::string BaseFileIO::fileName() const noexcept
+std::string BaseFileIO::FileName() const noexcept
 {
-	return fileName_;
+	return m_FileName;
 }
 
 /// Optional to use, the class automatically closes the file
-void BaseFileIO::close()
+void BaseFileIO::Close()
 {
-	if (fileStream.is_open())
+	if (m_FileStream.is_open())
 	{
-		fileStream.close();
+		m_FileStream.close();
 	}
 }
 
 BaseFileIO::~BaseFileIO()
 {
-	close();
+	Close();
 }
