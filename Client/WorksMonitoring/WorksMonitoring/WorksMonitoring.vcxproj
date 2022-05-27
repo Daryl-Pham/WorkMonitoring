@@ -93,6 +93,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -165,6 +168,17 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="WorksMonitoring.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MainLibrary\MainLibrary.vcxproj">
+      <Project>{5f6bc29f-7d84-4a7c-a48e-9752f6d84e33}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\WMHook\WMHook.vcxproj">
+      <Project>{96133502-2fa1-4a37-ba3c-105f9beb623d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\WMService\WMService.vcxproj">
+      <Project>{8c614f0a-3a1f-4bbe-82a2-a09f0828ce3a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
