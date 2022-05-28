@@ -1,6 +1,7 @@
 #include "stdafx.h"
-#include "WritingData.h"
 #include <Shlobj.h>
+#include "WritingData.h"
+#include "PlainTextFileIO.h"
 
 std::wstring WritingData::GetFullPathDataFile(const OperateType type)
 {
@@ -16,7 +17,7 @@ std::wstring WritingData::GetFullPathDataFile(const OperateType type)
 		else if (type == KEYBOARD_OPERATE)
 		{
 			
-			fullPathDataFile = std::wstring(path) + L"\KeyboardOperate.data";
+			fullPathDataFile = std::wstring(path) + L"\\KeyboardOperate.data";
 			return fullPathDataFile;
 		}
 	}
@@ -25,10 +26,11 @@ std::wstring WritingData::GetFullPathDataFile(const OperateType type)
 
 bool WritingData::WriteData(const OperateType type)
 {
+
 	return false;
 }
 
 WritingData::WritingData()
 {
-
+	m_MouseOperateFileIO = new PlainTextFileIO(GetFullPathDataFile(MOUSE_OPERATE));
 }
