@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "WorksMonitoring.h"
+#include 
 
 #define MAX_LOADSTRING 100
 
@@ -26,6 +27,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+
+	// Install hook
+	
+
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);

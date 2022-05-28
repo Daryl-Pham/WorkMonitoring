@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WMService", "WMService\WMSe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WMHook", "WMHook\WMHook.vcxproj", "{96133502-2FA1-4A37-BA3C-105F9BEB623D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevTest", "DevTest", "{AF458962-7170-44CD-AF17-AF365C5EC1BD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeTestCPP", "CodeTestCPP\CodeTestCPP.vcxproj", "{11824EC7-040E-4B69-87E7-E106C400BF83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,8 +55,19 @@ Global
 		{96133502-2FA1-4A37-BA3C-105F9BEB623D}.Release|x64.Build.0 = Release|x64
 		{96133502-2FA1-4A37-BA3C-105F9BEB623D}.Release|x86.ActiveCfg = Release|Win32
 		{96133502-2FA1-4A37-BA3C-105F9BEB623D}.Release|x86.Build.0 = Release|Win32
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Debug|x64.ActiveCfg = Debug|x64
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Debug|x64.Build.0 = Debug|x64
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Debug|x86.ActiveCfg = Debug|Win32
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Debug|x86.Build.0 = Debug|Win32
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Release|x64.ActiveCfg = Release|x64
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Release|x64.Build.0 = Release|x64
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Release|x86.ActiveCfg = Release|Win32
+		{11824EC7-040E-4B69-87E7-E106C400BF83}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11824EC7-040E-4B69-87E7-E106C400BF83} = {AF458962-7170-44CD-AF17-AF365C5EC1BD}
 	EndGlobalSection
 EndGlobal
