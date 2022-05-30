@@ -74,6 +74,10 @@ BOOL CWMClientApp::InitInstance()
 
 int CWMClientApp::ExitInstance()
 {
+	if (m_WMMainWindow && (!m_WMMainWindow->PostMessage(WM_CLOSE)))
+	{
+		
+	}
 	//TODO: handle additional resources you may have added
 	return CWinApp::ExitInstance();
 }
