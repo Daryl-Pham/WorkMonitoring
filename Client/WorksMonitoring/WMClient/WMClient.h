@@ -8,11 +8,14 @@
 #endif
 
 #include "resource.h"       // main symbols
+#include <memory>
 
 
 // CWMClientApp:
 // See WMClient.cpp for the implementation of this class
 //
+
+class WMMainWindow;
 
 class CWMClientApp : public CWinApp
 {
@@ -30,6 +33,9 @@ public:
 public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	std::unique_ptr<WMMainWindow> m_WMMainWindow;
 };
 
 extern CWMClientApp theApp;
