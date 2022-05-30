@@ -23,6 +23,8 @@ protected:
 
 private:
 	std::unique_ptr<WindowsHookInterface> m_WindowsHook;
+	int64_t m_LastTimeWriteKeyboardOperate;
+	int64_t m_LastTimeWriteMouseOperate;
 
 	BOOL SetKeyboardAndMouseHook();
 	BOOL UnSetKeyboardAndMouseHook();

@@ -3,10 +3,15 @@
 #include "WMMainWindow.h"
 #include <WindowsHook.h>
 #include "WMMessage.h"
+#include <chrono>
+
+static const int64_t DURATION_SECONDS_TO_WRITE_LOG = 300;
 
 WMMainWindow::WMMainWindow()
 {
 	m_WindowsHook = std::make_unique<::WindowsHook>();
+	m_LastTimeWriteMouseOperate = m_LastTimeWriteKeyboardOperate
+		= std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
 bool WMMainWindow::Init()
@@ -34,11 +39,27 @@ void WMMainWindow::OnDestroy()
 
 LRESULT WMMainWindow::OnMessageKeyboard(WPARAM wParam, LPARAM lParam)
 {
+	(void)wParam;  // Unused
+	(void)lParam;  // Unused
+
+	//khanhpqtest - Check exist log files or not
+
+	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	if (now - m_LastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG)
+	{
+		//khanhpqtest - write log to file
+	}
+
 	return 0;
 }
 
 LRESULT WMMainWindow::OnMessageMouse(WPARAM wParam, LPARAM lParam)
 {
+	(void)wParam;  // Unused
+	(void)lParam;  // Unused
+
+
+
 	return 0;
 }
 
