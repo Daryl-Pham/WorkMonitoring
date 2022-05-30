@@ -32,5 +32,5 @@ bool WritingData::WriteData(const OperateType type)
 
 WritingData::WritingData()
 {
-	m_MouseOperateFileIO = new PlainTextFileIO(GetFullPathDataFile(MOUSE_OPERATE));
+	//m_MouseOperateFileIO = new PlainTextFileIO(GetFullPathDataFile(MOUSE_OPERATE));
 }
