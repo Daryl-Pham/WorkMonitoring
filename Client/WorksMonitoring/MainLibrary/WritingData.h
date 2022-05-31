@@ -22,10 +22,8 @@ private:
 	PlainTextFileIO* m_MouseOperateFileIO;
 	PlainTextFileIO* m_KeyboarOperateFileIO;
 
-	//std::wstring GetFullPathDataFile(const OperateType type);
+	std::wstring GetFullPathDataFile(const OperateType type);
 	bool WriteData(const OperateType type);
 public:
-	__declspec(dllexport) WritingData();
-
-	__declspec(dllexport) std::wstring GetFullPathDataFile(const OperateType type);
+	WritingData();
 };

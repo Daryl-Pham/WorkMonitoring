@@ -1,4 +1,6 @@
 #include "WMHook.h"
+#include <chrono>
+#include <queue>
 
 #pragma data_seg("BTH_DATA")
 HHOOK bthKeyboardHook = NULL;
@@ -10,11 +12,28 @@ UINT bthMsgMouse = NULL;
 HINSTANCE hDllInst = NULL;
 #pragma data_seg()
 
+struct MessageOperate
+{
+	int typeOperate = 0;
+	int64_t timeOperate = 0;
+};
+
+static const int DURATION_SECONDS_TO_WRITE_LOG = 5;
+
+static std::queue<MessageOperate> OperateQueue;
+
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
-	if ((nCode >= 0) && bthWndKeyboard && bthMsgKeyboard)
+	int64_t now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	int64_t periodTime = now - timePointLastKeyboardOperate;
+
+	if ((nCode >= 0) && bthWndKeyboard && bthMsgKeyboard && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
-		PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
+		timePointLastKeyboardOperate = now;
+		MessageOperate item{ 0, now };
+		OperateQueue.push(item);
+		//Add to queue, then from queue post message
+		//PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
 	}
 
 	return CallNextHookEx(bthKeyboardHook, nCode, wp, lp);
@@ -22,9 +41,16 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 
 LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
-	if ((nCode >= 0) && bthWndMouse && bthMsgMouse)
+	int64_t now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	int64_t periodTime = now - timePointLastMouseOperate;
+
+	if ((nCode >= 0) && bthWndMouse && bthMsgMouse && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
-		PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
+		timePointLastMouseOperate = now;
+		MessageOperate item{ 0, now };
+		OperateQueue.push(item);
+		//Add to queue, then from queue post message
+		//PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
 	}
 
 	return CallNextHookEx(bthMouseHook, nCode, wp, lp);

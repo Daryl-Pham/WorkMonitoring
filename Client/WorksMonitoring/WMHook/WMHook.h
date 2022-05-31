@@ -1,6 +1,9 @@
 #pragma once
 #include <Windows.h>
 
+static int64_t timePointLastKeyboardOperate = 0;
+static int64_t timePointLastMouseOperate = 0;
+
 /**
 * Set hook for keyboard. You can get keyboard event by catching keyboardMessage.
 * @param hWnd Target of PostMessage().
