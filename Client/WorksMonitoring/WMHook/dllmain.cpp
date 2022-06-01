@@ -1,6 +1,6 @@
 #include "WMHook.h"
 #include <chrono>
-#include <queue>
+#include "SafeQueue.h"
 
 #pragma data_seg("BTH_DATA")
 HHOOK bthKeyboardHook = NULL;
@@ -14,13 +14,36 @@ HINSTANCE hDllInst = NULL;
 
 struct MessageOperate
 {
-	int typeOperate = 0;
+	int typeOperate = -1;
 	int64_t timeOperate = 0;
+	WPARAM wParamOperate = 0;
+	LPARAM lParamOperate = 0;
+
+	MessageOperate(int type, int64_t time, WPARAM wParam, LPARAM lParam)
+	{
+		typeOperate = type;
+		timeOperate = time;
+		wParamOperate = wParam;
+		lParamOperate = lParam;
+	}
 };
 
-static const int DURATION_SECONDS_TO_WRITE_LOG = 5;
+static int64_t timePointLastKeyboardOperate = 0;
+static int64_t timePointLastMouseOperate = 0;
+static const int DURATION_SECONDS_TO_WRITE_LOG = 3;
+SafeQueue<MessageOperate> messageQueue;
+UINT_PTR timerID = 0;
 
-static std::queue<MessageOperate> OperateQueue;
+VOID CALLBACK TimerProc(HWND hWnd, UINT nMsg, UINT nIDEvent, DWORD dwTime)
+{
+	MessageOperate item = messageQueue.dequeue();
+	if (item.typeOperate != -1)
+	{
+		HWND handle = item.typeOperate == 0 ? bthWndKeyboard : bthWndMouse;
+		UINT msg = item.typeOperate == 0 ? bthMsgKeyboard : bthMsgMouse;
+		PostMessage(handle, msg, item.wParamOperate, item.lParamOperate);
+	}
+}
 
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
@@ -30,8 +53,7 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 	if ((nCode >= 0) && bthWndKeyboard && bthMsgKeyboard && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
 		timePointLastKeyboardOperate = now;
-		MessageOperate item{ 0, now };
-		OperateQueue.push(item);
+		messageQueue.enqueue(MessageOperate(0, now, wp, lp));
 		//Add to queue, then from queue post message
 		//PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
 	}
@@ -47,8 +69,7 @@ LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wp, LPARAM lp)
 	if ((nCode >= 0) && bthWndMouse && bthMsgMouse && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
 		timePointLastMouseOperate = now;
-		MessageOperate item{ 0, now };
-		OperateQueue.push(item);
+		messageQueue.enqueue(MessageOperate(1, now, wp, lp));
 		//Add to queue, then from queue post message
 		//PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
 	}
@@ -62,6 +83,8 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 )
 {
 	(void)lpReserved;  // Unused
+
+	timerID = SetTimer(NULL, 10010, 1000, (TIMERPROC)&TimerProc);
 
 	switch (ul_reason_for_call)
 	{
@@ -113,6 +136,11 @@ BOOL BthSetHookForMouse(HWND hWnd, UINT mouseMessage)
 
 BOOL BthUnsetHookForKeyboard()
 {
+	if (timerID)
+	{
+		KillTimer(NULL, timerID);
+	}
+
 	bthWndKeyboard = NULL;
 	bthMsgKeyboard = 0;
 
@@ -132,6 +160,11 @@ BOOL BthUnsetHookForKeyboard()
 
 BOOL BthUnsetHookForMouse()
 {
+	if (timerID)
+	{
+		KillTimer(NULL, timerID);
+	}
+
 	bthWndMouse = NULL;
 	bthMsgMouse = 0;
 

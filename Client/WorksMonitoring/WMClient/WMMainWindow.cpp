@@ -6,6 +6,7 @@
 #include <chrono>
 
 static const int64_t DURATION_SECONDS_TO_WRITE_LOG = 300;
+LPCTSTR WINDOW_NAME = _T("BizTelework");
 
 WMMainWindow::WMMainWindow()
 {
@@ -16,6 +17,12 @@ WMMainWindow::WMMainWindow()
 
 bool WMMainWindow::Init()
 {
+	CString wcn = ::AfxRegisterWndClass(NULL);
+	if (!this->CreateEx(0, wcn, WINDOW_NAME, 0, 0, 0, 0, 0, HWND_MESSAGE, 0))
+	{
+		//LOG_WARN("CreateEx() failed.");
+	}
+
 	SetKeyboardAndMouseHook();
 	return true;
 }
