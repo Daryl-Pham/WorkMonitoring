@@ -54,7 +54,7 @@ LRESULT WMMainWindow::OnMessageKeyboard(WPARAM wParam, LPARAM lParam)
 	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	if (now - m_LastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
-		//khanhpqtest - write log to file
+		//khanhpqtest - write log to file, if OK --> update m_LastTimeWriteKeyboardOperate
 	}
 
 	return 0;
@@ -65,7 +65,14 @@ LRESULT WMMainWindow::OnMessageMouse(WPARAM wParam, LPARAM lParam)
 	(void)wParam;  // Unused
 	(void)lParam;  // Unused
 
+	//khanhpqtest - Check exist log files or not
 
+	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	if (now - m_LastTimeWriteMouseOperate >= DURATION_SECONDS_TO_WRITE_LOG)
+	{
+		//khanhpqtest - write log to file, if OK --> update m_LastTimeWriteMouseOperate
+	}
+	//khanhpqtest - write log to file, if OK --> update m
 
 	return 0;
 }

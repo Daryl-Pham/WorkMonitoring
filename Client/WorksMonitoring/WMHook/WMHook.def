@@ -1,0 +1,12 @@
+LIBRARY WMHook
+
+SECTIONS
+    BTH_DATA READ WRITE SHARED
+
+EXPORTS
+    BthSetHookForKeyboard @1
+    BthSetHookForMouse @2
+    BthUnsetHookForKeyboard @3
+    BthUnsetHookForMouse @4
+	KeyboardHookProc @5
+	MouseHookProc @6

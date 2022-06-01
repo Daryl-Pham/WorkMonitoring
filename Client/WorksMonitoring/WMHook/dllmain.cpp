@@ -1,6 +1,5 @@
 #include "WMHook.h"
 #include <chrono>
-#include "SafeQueue.h"
 
 #pragma data_seg("BTH_DATA")
 HHOOK bthKeyboardHook = NULL;
@@ -12,38 +11,9 @@ UINT bthMsgMouse = NULL;
 HINSTANCE hDllInst = NULL;
 #pragma data_seg()
 
-struct MessageOperate
-{
-	int typeOperate = -1;
-	int64_t timeOperate = 0;
-	WPARAM wParamOperate = 0;
-	LPARAM lParamOperate = 0;
-
-	MessageOperate(int type, int64_t time, WPARAM wParam, LPARAM lParam)
-	{
-		typeOperate = type;
-		timeOperate = time;
-		wParamOperate = wParam;
-		lParamOperate = lParam;
-	}
-};
-
 static int64_t timePointLastKeyboardOperate = 0;
 static int64_t timePointLastMouseOperate = 0;
-static const int DURATION_SECONDS_TO_WRITE_LOG = 3;
-SafeQueue<MessageOperate> messageQueue;
-UINT_PTR timerID = 0;
-
-VOID CALLBACK TimerProc(HWND hWnd, UINT nMsg, UINT nIDEvent, DWORD dwTime)
-{
-	MessageOperate item = messageQueue.dequeue();
-	if (item.typeOperate != -1)
-	{
-		HWND handle = item.typeOperate == 0 ? bthWndKeyboard : bthWndMouse;
-		UINT msg = item.typeOperate == 0 ? bthMsgKeyboard : bthMsgMouse;
-		PostMessage(handle, msg, item.wParamOperate, item.lParamOperate);
-	}
-}
+static const int DURATION_SECONDS_TO_WRITE_LOG = 5;
 
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
@@ -53,9 +23,7 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 	if ((nCode >= 0) && bthWndKeyboard && bthMsgKeyboard && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
 		timePointLastKeyboardOperate = now;
-		messageQueue.enqueue(MessageOperate(0, now, wp, lp));
-		//Add to queue, then from queue post message
-		//PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
+		PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
 	}
 
 	return CallNextHookEx(bthKeyboardHook, nCode, wp, lp);
@@ -63,15 +31,9 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 
 LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
-	int64_t now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	int64_t periodTime = now - timePointLastMouseOperate;
-
-	if ((nCode >= 0) && bthWndMouse && bthMsgMouse && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
+	if ((nCode >= 0) && bthWndMouse && bthMsgMouse)
 	{
-		timePointLastMouseOperate = now;
-		messageQueue.enqueue(MessageOperate(1, now, wp, lp));
-		//Add to queue, then from queue post message
-		//PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
+		PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
 	}
 
 	return CallNextHookEx(bthMouseHook, nCode, wp, lp);
@@ -83,8 +45,6 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 )
 {
 	(void)lpReserved;  // Unused
-
-	timerID = SetTimer(NULL, 10010, 1000, (TIMERPROC)&TimerProc);
 
 	switch (ul_reason_for_call)
 	{
@@ -136,11 +96,6 @@ BOOL BthSetHookForMouse(HWND hWnd, UINT mouseMessage)
 
 BOOL BthUnsetHookForKeyboard()
 {
-	if (timerID)
-	{
-		KillTimer(NULL, timerID);
-	}
-
 	bthWndKeyboard = NULL;
 	bthMsgKeyboard = 0;
 
@@ -160,11 +115,6 @@ BOOL BthUnsetHookForKeyboard()
 
 BOOL BthUnsetHookForMouse()
 {
-	if (timerID)
-	{
-		KillTimer(NULL, timerID);
-	}
-
 	bthWndMouse = NULL;
 	bthMsgMouse = 0;
 
