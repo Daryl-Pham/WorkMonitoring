@@ -12,7 +12,7 @@ void PlainTextFileIO::Write(const Type& contentToWrite, bool appendContent)
 }
 
 /// Reads text content word by word
-std::string PlainTextFileIO::ReadWithOffset(std::size_t offset)
+TCHAR* PlainTextFileIO::ReadWithOffset(std::size_t offset)
 {
 
 	std::string readContent;
@@ -22,11 +22,11 @@ std::string PlainTextFileIO::ReadWithOffset(std::size_t offset)
 	}
 	m_FileStream >> readContent;
 
-	return readContent;
+	return readContent.c_str();
 }
 
 /// Reads text content word by word
-std::string PlainTextFileIO::Read()
+TCHAR* PlainTextFileIO::Read()
 {
 	return ReadWithOffset(0);
 }
@@ -97,4 +97,12 @@ void PlainTextFileIO::SaveTextTo(const std::string& fileName, const std::string&
 	PlainTextFileIO fileToWrite(fileName);
 	fileToWrite.Open(std::ios::out);
 	fileToWrite.Write(text);
+}
+
+void PlainTextFileIO::StringToTCHAR(std::string str, TCHAR* tchar)
+{
+	TCHAR* v;
+
+	//v.reserve(s.length() + 1);
+	v->assign(s.c_str(), s.c_str() + s.length() + 1);
 }

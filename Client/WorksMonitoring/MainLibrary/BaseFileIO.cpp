@@ -18,12 +18,12 @@ void BaseFileIO::Open(const std::ios_base::openmode inputOutputMode) noexcept(fa
 	}
 }
 
-BaseFileIO::BaseFileIO(const std::string& fileName)
+BaseFileIO::BaseFileIO(const TCHAR* fileName)
 {
 	this->m_FileName = fileName;
 }
 
-bool BaseFileIO::Exists(const std::string& filePath)
+bool BaseFileIO::Exists(const TCHAR* filePath)
 {
 	std::ifstream file(filePath);
 	return !file.fail();
@@ -34,7 +34,7 @@ void BaseFileIO::SeekInputPosition(std::size_t offsetPosition, std::ios_base::se
 	m_FileStream.seekg(offsetPosition, position);
 }
 
-void BaseFileIO::Open(const std::string& fileName)
+void BaseFileIO::Open(const TCHAR* fileName)
 {
 	this->m_FileName = fileName;
 	this->Close();
@@ -45,7 +45,7 @@ bool BaseFileIO::EndOfFile() const
 	return m_FileStream.eof();
 }
 
-std::string BaseFileIO::FileName() const noexcept
+const TCHAR* BaseFileIO::FileName() const noexcept
 {
 	return m_FileName;
 }

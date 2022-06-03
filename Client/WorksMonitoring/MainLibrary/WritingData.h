@@ -7,6 +7,7 @@
 #endif
 
 #include <string>
+#include <memory>
 
 class PlainTextFileIO;
 
@@ -19,11 +20,11 @@ enum  OperateType
 class WritingData
 {
 private:
-	PlainTextFileIO* m_MouseOperateFileIO;
-	PlainTextFileIO* m_KeyboarOperateFileIO;
+	std::unique_ptr<PlainTextFileIO> m_pMouseOperateFileIO;
+	std::unique_ptr<PlainTextFileIO> m_pKeyboarOperateFileIO;
 
-	std::wstring GetFullPathDataFile(const OperateType type);
-	bool WriteData(const OperateType type);
+	std::string GetFullPathDataFile(const OperateType type);
 public:
 	WritingData();
+	bool WriteData(const OperateType type);
 };

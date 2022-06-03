@@ -4,15 +4,17 @@
 #include <WindowsHook.h>
 #include "WMMessage.h"
 #include <chrono>
+#include "WritingData.h"
 
 static const int64_t DURATION_SECONDS_TO_WRITE_LOG = 300;
 LPCTSTR WINDOW_NAME = _T("BizTelework");
 
 WMMainWindow::WMMainWindow()
 {
-	m_WindowsHook = std::make_unique<::WindowsHook>();
-	m_LastTimeWriteMouseOperate = m_LastTimeWriteKeyboardOperate
+	m_pWindowsHook = std::make_unique<::WindowsHook>();
+	m_nLastTimeWriteMouseOperate = m_nLastTimeWriteKeyboardOperate
 		= std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	m_pWritingData = std::make_unique<WritingData>();
 }
 
 bool WMMainWindow::Init()
@@ -52,9 +54,9 @@ LRESULT WMMainWindow::OnMessageKeyboard(WPARAM wParam, LPARAM lParam)
 	//khanhpqtest - Check exist log files or not
 
 	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	if (now - m_LastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG)
+	if (now - m_nLastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
-		//khanhpqtest - write log to file, if OK --> update m_LastTimeWriteKeyboardOperate
+		//khanhpqtest - write log to file, if OK --> update m_nLastTimeWriteKeyboardOperate
 	}
 
 	return 0;
@@ -68,9 +70,9 @@ LRESULT WMMainWindow::OnMessageMouse(WPARAM wParam, LPARAM lParam)
 	//khanhpqtest - Check exist log files or not
 
 	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	if (now - m_LastTimeWriteMouseOperate >= DURATION_SECONDS_TO_WRITE_LOG)
+	if (now - m_nLastTimeWriteMouseOperate >= DURATION_SECONDS_TO_WRITE_LOG && m_pWritingData->WriteData(MOUSE_OPERATE))
 	{
-		//khanhpqtest - write log to file, if OK --> update m_LastTimeWriteMouseOperate
+			m_nLastTimeWriteMouseOperate = now;
 	}
 	//khanhpqtest - write log to file, if OK --> update m
 
@@ -90,12 +92,12 @@ BOOL WMMainWindow::SetKeyboardAndMouseHook()
 		return FALSE;
 	}
 
-	if (!m_WindowsHook->SetHookForKeyboard(hWnd, WM_MESSAGE_KEYBOARD))
+	if (!m_pWindowsHook->SetHookForKeyboard(hWnd, WM_MESSAGE_KEYBOARD))
 	{
 
 	}
 
-	if (!m_WindowsHook->SetHookForMouse(hWnd, WM_MESSAGE_MOUSE))
+	if (!m_pWindowsHook->SetHookForMouse(hWnd, WM_MESSAGE_MOUSE))
 	{
 
 	}
@@ -105,17 +107,17 @@ BOOL WMMainWindow::SetKeyboardAndMouseHook()
 
 BOOL WMMainWindow::UnSetKeyboardAndMouseHook()
 {
-	if (!m_WindowsHook)
+	if (!m_pWindowsHook)
 	{
 		return FALSE;
 	}
 
-	if (!m_WindowsHook->UnsetHookForKeyboard())
+	if (!m_pWindowsHook->UnsetHookForKeyboard())
 	{
 		
 	}
 
-	if (!m_WindowsHook->UnsetHookForMouse())
+	if (!m_pWindowsHook->UnsetHookForMouse())
 	{
 		
 	}

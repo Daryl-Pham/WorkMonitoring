@@ -2,8 +2,9 @@
 #include <Shlobj.h>
 #include "WritingData.h"
 #include "PlainTextFileIO.h"
+#include <experimental/filesystem>
 
-std::wstring WritingData::GetFullPathDataFile(const OperateType type)
+std::string WritingData::GetFullPathDataFile(const OperateType type)
 {
 	std::wstring fullPathDataFile;
 	WCHAR path[MAX_PATH];
@@ -12,16 +13,16 @@ std::wstring WritingData::GetFullPathDataFile(const OperateType type)
 		if (type == MOUSE_OPERATE)
 		{
 			fullPathDataFile = std::wstring(path) + L"\\MouseOperate.data";
-			return fullPathDataFile;
+			std::experimental::filesystem::path(fullPathDataFile).string();
 		}
 		else if (type == KEYBOARD_OPERATE)
 		{
 			
 			fullPathDataFile = std::wstring(path) + L"\\KeyboardOperate.data";
-			return fullPathDataFile;
+			return std::experimental::filesystem::path(fullPathDataFile).string();
 		}
 	}
-	else return L"";
+	else return "";
 }
 
 bool WritingData::WriteData(const OperateType type)
@@ -32,5 +33,6 @@ bool WritingData::WriteData(const OperateType type)
 
 WritingData::WritingData()
 {
-	//m_MouseOperateFileIO = new PlainTextFileIO(GetFullPathDataFile(MOUSE_OPERATE));
+	m_pMouseOperateFileIO = std::make_unique<PlainTextFileIO>(GetFullPathDataFile(MOUSE_OPERATE));
+	m_pKeyboarOperateFileIO = std::make_unique<PlainTextFileIO>(GetFullPathDataFile(KEYBOARD_OPERATE));
 }

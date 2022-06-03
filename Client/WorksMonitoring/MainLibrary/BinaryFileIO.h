@@ -5,7 +5,7 @@
 class BinaryFileIO : public BaseFileIO
 {
 public:
-	BinaryFileIO(const std::string& fileName) : BaseFileIO(fileName) {}
+	BinaryFileIO(const TCHAR* fileName) : BaseFileIO(fileName) {}
 
 	template <typename Type>
 	void Write(Type&& content, bool appendContent = true);

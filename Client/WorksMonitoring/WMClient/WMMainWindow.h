@@ -4,6 +4,7 @@
 #include <memory>
 
 class WindowsHookInterface;
+class WritingData;
 
 class WMMainWindow : public CWnd
 {
@@ -22,9 +23,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	std::unique_ptr<WindowsHookInterface> m_WindowsHook;
-	int64_t m_LastTimeWriteKeyboardOperate;
-	int64_t m_LastTimeWriteMouseOperate;
+	std::unique_ptr<WindowsHookInterface> m_pWindowsHook;
+	int64_t m_nLastTimeWriteKeyboardOperate;
+	int64_t m_nLastTimeWriteMouseOperate;
+	std::unique_ptr<WritingData> m_pWritingData;
 
 	BOOL SetKeyboardAndMouseHook();
 	BOOL UnSetKeyboardAndMouseHook();

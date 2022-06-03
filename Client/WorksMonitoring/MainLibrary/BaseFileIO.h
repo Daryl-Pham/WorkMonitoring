@@ -17,17 +17,17 @@ class BaseFileIO : public FileIOInterface
 protected:
 	std::fstream m_FileStream;
 	std::ios_base::openmode m_InputOutputMode;
-	std::string m_FileName;
+	const TCHAR* m_FileName;
 
-	BaseFileIO(const std::string& fileName);
+	BaseFileIO(const TCHAR* fileName);
 	void Open(const std::ios_base::openmode inputOutputMode) noexcept(false) override;
 
 public:
-	static bool Exists(const std::string& filePath);
+	static bool Exists(const TCHAR* filePath);
 	void SeekInputPosition(std::size_t offsetPosition, std::ios_base::seekdir position = std::ios::beg) override;
-	void Open(const std::string& fileName) override;
+	void Open(const TCHAR* fileName) override;
 	bool EndOfFile() const override;
-	std::string FileName() const noexcept override;
+	const TCHAR* FileName() const noexcept override;
 	void Close() override;
 	~BaseFileIO();
 

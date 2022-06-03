@@ -5,26 +5,29 @@
 class PlainTextFileIO : public BaseFileIO
 {
 public:
-	PlainTextFileIO(const std::string& fileName) : BaseFileIO(fileName) {}
+	PlainTextFileIO(const TCHAR* fileName) : BaseFileIO(fileName) {}
 
 	template <typename Type>
 	void Write(const Type& contentToWrite, bool appendContent = true);
 
 	// Reads text content word by word
-	std::string ReadWithOffset(std::size_t offset = 0);
+	TCHAR* ReadWithOffset(std::size_t offset = 0);
 
 	// Reads text content word by word
-	std::string Read();
+	TCHAR* Read();
 
-	std::string GetLine();
+	TCHAR* GetLine();
 
-	std::string SafeRead();
+	TCHAR* SafeRead();
 
-	std::string SafeGetLine();
+	TCHAR* SafeGetLine();
 
-	std::string ToString();
+	TCHAR* ToString();
 
-	static std::string ToString(const std::string& fileName);
+	static TCHAR* ToString(const TCHAR* fileName);
 
-	static void SaveTextTo(const std::string& fileName, const std::string& text);
+	static void SaveTextTo(const TCHAR* fileName, const TCHAR* text);
+
+private:
+	void StringToTCHAR(std::string str);
 };
