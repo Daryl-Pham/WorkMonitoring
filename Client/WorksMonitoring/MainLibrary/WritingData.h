@@ -8,6 +8,8 @@
 
 #include <string>
 #include <memory>
+#include <chrono>
+#include "PlainTextFileIO.h"
 
 class PlainTextFileIO;
 
@@ -23,8 +25,9 @@ private:
 	std::unique_ptr<PlainTextFileIO> m_pMouseOperateFileIO;
 	std::unique_ptr<PlainTextFileIO> m_pKeyboarOperateFileIO;
 
-	std::string GetFullPathDataFile(const OperateType type);
+	std::wstring GetFullPathDataFile(const OperateType type);
 public:
 	WritingData();
-	bool WriteData(const OperateType type);
+	bool ExistFile(const OperateType type);
+	bool WriteData(const OperateType type, const std::chrono::system_clock::time_point &current);
 };

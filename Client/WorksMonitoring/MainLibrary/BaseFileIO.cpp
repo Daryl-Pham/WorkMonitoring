@@ -23,6 +23,12 @@ BaseFileIO::BaseFileIO(const TCHAR* fileName)
 	this->m_FileName = fileName;
 }
 
+bool BaseFileIO::Exists()
+{
+	std::ifstream file(m_FileName);
+	return !file.fail();
+}
+
 bool BaseFileIO::Exists(const TCHAR* filePath)
 {
 	std::ifstream file(filePath);
@@ -34,7 +40,7 @@ void BaseFileIO::SeekInputPosition(std::size_t offsetPosition, std::ios_base::se
 	m_FileStream.seekg(offsetPosition, position);
 }
 
-void BaseFileIO::Open(const TCHAR* fileName)
+void BaseFileIO::Open(TCHAR* fileName)
 {
 	this->m_FileName = fileName;
 	this->Close();

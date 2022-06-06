@@ -15,7 +15,7 @@ class BaseFileIO : public FileIOInterface
 	};
 
 protected:
-	std::fstream m_FileStream;
+	std::wfstream m_FileStream;
 	std::ios_base::openmode m_InputOutputMode;
 	const TCHAR* m_FileName;
 
@@ -23,9 +23,10 @@ protected:
 	void Open(const std::ios_base::openmode inputOutputMode) noexcept(false) override;
 
 public:
+	bool Exists();
 	static bool Exists(const TCHAR* filePath);
 	void SeekInputPosition(std::size_t offsetPosition, std::ios_base::seekdir position = std::ios::beg) override;
-	void Open(const TCHAR* fileName) override;
+	void Open(TCHAR* fileName) override;
 	bool EndOfFile() const override;
 	const TCHAR* FileName() const noexcept override;
 	void Close() override;

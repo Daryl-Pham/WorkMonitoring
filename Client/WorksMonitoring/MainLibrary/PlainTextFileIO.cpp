@@ -1,21 +1,29 @@
 #include "stdafx.h"
 #include "PlainTextFileIO.h"
+#include <codecvt>
+#include <string>
 
 template <typename Type>
 void PlainTextFileIO::Write(const Type& contentToWrite, bool appendContent)
 {
-
-	if (appendContent) { Open(std::ios::out | std::ios::in | std::ios::app); }
-	else { Open(std::ios::out | std::ios::in | std::ios::trunc); }
+	std::lock_guard<std::mutex> lock(m_MutexFileProcessingFile);
+	if (appendContent)
+	{
+		Open(std::ios::out | std::ios::in | std::ios::app);
+	}
+	else
+	{
+		Open(std::ios::out | std::ios::in | std::ios::trunc);
+	}
 
 	m_FileStream << contentToWrite;
 }
 
 /// Reads text content word by word
-TCHAR* PlainTextFileIO::ReadWithOffset(std::size_t offset)
+const TCHAR* PlainTextFileIO::ReadWithOffset(std::size_t offset)
 {
 
-	std::string readContent;
+	std::wstring readContent;
 	Open(std::ios::in);
 	if (offset > 0) {
 		SeekInputPosition(offset);
@@ -26,15 +34,15 @@ TCHAR* PlainTextFileIO::ReadWithOffset(std::size_t offset)
 }
 
 /// Reads text content word by word
-TCHAR* PlainTextFileIO::Read()
+const TCHAR* PlainTextFileIO::Read()
 {
 	return ReadWithOffset(0);
 }
 
-std::string PlainTextFileIO::GetLine()
+std::wstring PlainTextFileIO::GetLine()
 {
 
-	std::string s;
+	std::wstring s;
 
 	Open(std::ios::in);
 	std::getline(m_FileStream, s);
@@ -43,10 +51,10 @@ std::string PlainTextFileIO::GetLine()
 }
 
 
-std::string PlainTextFileIO::SafeRead()
+std::wstring PlainTextFileIO::SafeRead()
 {
 
-	std::string readContent;
+	std::wstring readContent;
 	Open(std::ios::in);
 	m_FileStream >> readContent;
 
@@ -57,10 +65,10 @@ std::string PlainTextFileIO::SafeRead()
 	return readContent;
 }
 
-std::string PlainTextFileIO::SafeGetLine()
+std::wstring PlainTextFileIO::SafeGetLine()
 {
 
-	std::string s;
+	std::wstring s;
 
 	Open(std::ios::in);
 	std::getline(m_FileStream, s);
@@ -72,37 +80,29 @@ std::string PlainTextFileIO::SafeGetLine()
 	return s;
 }
 
-std::string PlainTextFileIO::ToString()
+std::wstring PlainTextFileIO::ToString()
 {
 
 	this->Open(std::ios::in);
 
-	std::string line;
-	std::string outputContent;
+	std::wstring line;
+	std::wstring outputContent;
 
 	while (std::getline(m_FileStream, line)) {
-		outputContent += line + '\n';
+		outputContent += line + L"\n";
 	}
 
 	return outputContent;
 }
 
-std::string PlainTextFileIO::ToString(const std::string& fileName)
+std::wstring PlainTextFileIO::ToString(std::wstring& fileName)
 {
-	return PlainTextFileIO(fileName).ToString();
+	return PlainTextFileIO(fileName.c_str()).ToString();
 }
 
-void PlainTextFileIO::SaveTextTo(const std::string& fileName, const std::string& text)
+void PlainTextFileIO::SaveTextTo(std::wstring& fileName, std::wstring& text)
 {
-	PlainTextFileIO fileToWrite(fileName);
+	PlainTextFileIO fileToWrite(fileName.c_str());
 	fileToWrite.Open(std::ios::out);
 	fileToWrite.Write(text);
-}
-
-void PlainTextFileIO::StringToTCHAR(std::string str, TCHAR* tchar)
-{
-	TCHAR* v;
-
-	//v.reserve(s.length() + 1);
-	v->assign(s.c_str(), s.c_str() + s.length() + 1);
 }

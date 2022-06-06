@@ -1,9 +1,12 @@
 #pragma once
 
 #include "BaseFileIO.h"
+#include <mutex>
 
 class PlainTextFileIO : public BaseFileIO
 {
+private:
+	std::mutex m_MutexFileProcessingFile;
 public:
 	PlainTextFileIO(const TCHAR* fileName) : BaseFileIO(fileName) {}
 
@@ -11,23 +14,20 @@ public:
 	void Write(const Type& contentToWrite, bool appendContent = true);
 
 	// Reads text content word by word
-	TCHAR* ReadWithOffset(std::size_t offset = 0);
+	const TCHAR* ReadWithOffset(std::size_t offset = 0);
 
 	// Reads text content word by word
-	TCHAR* Read();
+	const TCHAR* Read();
 
-	TCHAR* GetLine();
+	std::wstring GetLine();
 
-	TCHAR* SafeRead();
+	std::wstring SafeRead();
 
-	TCHAR* SafeGetLine();
+	std::wstring SafeGetLine();
 
-	TCHAR* ToString();
+	std::wstring ToString();
 
-	static TCHAR* ToString(const TCHAR* fileName);
+	static std::wstring ToString(std::wstring& fileName);
 
-	static void SaveTextTo(const TCHAR* fileName, const TCHAR* text);
-
-private:
-	void StringToTCHAR(std::string str);
+	static void SaveTextTo(std::wstring& fileName, std::wstring& text);
 };
