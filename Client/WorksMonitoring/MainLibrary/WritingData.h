@@ -24,10 +24,9 @@ class WritingData
 private:
 	std::unique_ptr<PlainTextFileIO> m_pMouseOperateFileIO;
 	std::unique_ptr<PlainTextFileIO> m_pKeyboarOperateFileIO;
-
-	std::wstring GetFullPathDataFile(const OperateType type);
 public:
 	WritingData();
+	std::wstring GetFullPathDataFile(const OperateType type);
 	bool ExistFile(const OperateType type);
 	bool WriteData(const OperateType type, const std::chrono::system_clock::time_point &current);
 };
