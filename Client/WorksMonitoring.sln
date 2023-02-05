@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainLibrary", "MainLibrary\MainLibrary.vcxproj", "{5F6BC29F-7D84-4A7C-A48E-9752F6D84E33}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeTestCPP", "CodeTestCPP\CodeTestCPP.vcxproj", "{11824EC7-040E-4B69-87E7-E106C400BF83}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WMClient", "WMClient\WMClient.vcxproj", "{9215C95F-0E86-4C44-A89B-8F328753CDB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{6D9CC129-82FA-49FB-ACCB-69548A71855A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainLibraryUT", "MainLibraryUT\MainLibraryUT.vcxproj", "{9FEBE1C6-089B-4C81-96BC-0C33BD999585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,11 +67,23 @@ Global
 		{9215C95F-0E86-4C44-A89B-8F328753CDB9}.Release|x64.Build.0 = Release|x64
 		{9215C95F-0E86-4C44-A89B-8F328753CDB9}.Release|x86.ActiveCfg = Release|Win32
 		{9215C95F-0E86-4C44-A89B-8F328753CDB9}.Release|x86.Build.0 = Release|Win32
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Debug|x64.ActiveCfg = Debug|x64
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Debug|x64.Build.0 = Debug|x64
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Debug|x86.ActiveCfg = Debug|Win32
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Debug|x86.Build.0 = Debug|Win32
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x64.ActiveCfg = Release|x64
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x64.Build.0 = Release|x64
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x86.ActiveCfg = Release|Win32
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{11824EC7-040E-4B69-87E7-E106C400BF83} = {AF458962-7170-44CD-AF17-AF365C5EC1BD}
+		{9FEBE1C6-089B-4C81-96BC-0C33BD999585} = {6D9CC129-82FA-49FB-ACCB-69548A71855A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AD63007-2089-4981-BDC5-94194088AF12}
 	EndGlobalSection
 EndGlobal
