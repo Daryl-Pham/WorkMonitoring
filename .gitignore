@@ -33,3 +33,16 @@
 /Client/WorksMonitoring/ipch/WMAPPLICATION-a22a6078/*.ipch
 /Client/WorksMonitoring/ipch/WMCLIENT-5ddd476e/*.ipch
 /Client/WorksMonitoring/ipch/WMCLIENT-a6653b7f/*.ipch
+/Client/.vs/WorksMonitoring/v17
+/Client/CodeTestCPP/Debug
+/Client/Debug
+/Client/MainLibrary/Debug
+/Client/MainLibrary/x64/Debug
+/Client/WMClient/Debug
+/Client/WMClient/x64/Debug
+/Client/WMHook/Debug
+/Client/WMHook/x64/Debug
+/Client/WMService/Debug
+/Client/WMService/x64/Debug
+/Client/x64/Debug
+/Client/CodeTestCPP/*.user
