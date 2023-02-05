@@ -46,7 +46,7 @@ Type BinaryFileIO::ReadWithOffset(std::size_t size, std::size_t offset)
 	if (offset > 0) {
 		SeekInputPosition(offset);
 	}
-	m_FileStream >> readContent;
+	//m_FileStream >> readContent;//khanhpqtest: ignore to fix for c++20
 
 	return readContent;
 }
