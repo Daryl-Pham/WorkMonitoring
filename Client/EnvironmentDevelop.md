@@ -3,7 +3,7 @@
 *  Use power-shell with adminstrator permission:
 *  PS> git clone https://github.com/Microsoft/vcpkg.git
 *  PS> cd vcpkg
-*  PS> git checkout d0268cf16649ffb8b847b719a9cab224623291f
+*  PS> git checkout 0ba60bfef5dea4cb2599daa7ad8364e309835a68
 *  PS> .\bootstrap-vcpkg.bat
 *  PS> .\vcpkg.exe integrate install
 
