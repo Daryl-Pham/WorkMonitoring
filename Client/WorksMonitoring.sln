@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{6D
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainLibraryUT", "MainLibraryUT\MainLibraryUT.vcxproj", "{9FEBE1C6-089B-4C81-96BC-0C33BD999585}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{42FD29B0-D533-43F5-AF34-B59098C98674}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "WMInstaller", "WMInstaller\WMInstaller.wixproj", "{0CED20A5-20BB-407F-B479-FC2B199E0FDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +79,14 @@ Global
 		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x64.Build.0 = Release|x64
 		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x86.ActiveCfg = Release|Win32
 		{9FEBE1C6-089B-4C81-96BC-0C33BD999585}.Release|x86.Build.0 = Release|Win32
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Debug|x64.ActiveCfg = Debug|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Debug|x64.Build.0 = Debug|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Debug|x86.ActiveCfg = Debug|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Debug|x86.Build.0 = Debug|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Release|x64.ActiveCfg = Release|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Release|x64.Build.0 = Release|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Release|x86.ActiveCfg = Release|x86
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +94,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{11824EC7-040E-4B69-87E7-E106C400BF83} = {AF458962-7170-44CD-AF17-AF365C5EC1BD}
 		{9FEBE1C6-089B-4C81-96BC-0C33BD999585} = {6D9CC129-82FA-49FB-ACCB-69548A71855A}
+		{0CED20A5-20BB-407F-B479-FC2B199E0FDE} = {42FD29B0-D533-43F5-AF34-B59098C98674}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AD63007-2089-4981-BDC5-94194088AF12}

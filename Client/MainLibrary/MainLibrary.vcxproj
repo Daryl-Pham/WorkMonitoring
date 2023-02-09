@@ -205,6 +205,9 @@
     <ClCompile Include="WritingData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MainLibraryUT\MainLibraryUT.vcxproj">
+      <Project>{9febe1c6-089b-4c81-96bc-0c33bd999585}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\WMHook\WMHook.vcxproj">
       <Project>{96133502-2fa1-4a37-ba3c-105f9beb623d}</Project>
     </ProjectReference>
