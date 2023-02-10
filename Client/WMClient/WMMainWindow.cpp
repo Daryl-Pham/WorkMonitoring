@@ -52,16 +52,16 @@ LRESULT WMMainWindow::OnMessageKeyboard(WPARAM wParam, LPARAM lParam)
 	(void)lParam;  // Unused
 
 	auto now = std::chrono::system_clock::now();
-	int64_t currentUnixTime = std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()).count();
+	int64_t writingUnixTime = (int64_t)wParam;
 
 	if (!m_pWritingData->ExistFile(KEYBOARD_OPERATE))
 	{
-		if(m_pWritingData->WriteData(KEYBOARD_OPERATE, now)) m_nLastTimeWriteKeyboardOperate = currentUnixTime;
+		if(m_pWritingData->WriteData(KEYBOARD_OPERATE, now)) m_nLastTimeWriteKeyboardOperate = writingUnixTime;
 	}
-	else if (currentUnixTime - m_nLastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG
+	else if (writingUnixTime - m_nLastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG
 		&& m_pWritingData->WriteData(KEYBOARD_OPERATE, now))
 	{
-		m_nLastTimeWriteKeyboardOperate = currentUnixTime;
+		m_nLastTimeWriteKeyboardOperate = writingUnixTime;
 	}
 
 	return 0;
@@ -85,7 +85,18 @@ LRESULT WMMainWindow::OnMessageMouse(WPARAM wParam, LPARAM lParam)
 
 LRESULT WMMainWindow::OnMessageKeyboardAndMouseHook(WPARAM wParam, LPARAM lParam)
 {
-	return 0;
+	(void)lParam;  // Unused
+
+	BOOL isSetHook = static_cast<BOOL>(wParam);
+
+	if (isSetHook)
+	{
+		return SetKeyboardAndMouseHook();
+	}
+	else
+	{
+		return UnSetKeyboardAndMouseHook();
+	}
 }
 
 BOOL WMMainWindow::SetKeyboardAndMouseHook()

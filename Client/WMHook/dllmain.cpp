@@ -13,7 +13,7 @@ HINSTANCE hDllInst = NULL;
 
 static int64_t timePointLastKeyboardOperate = 0;
 static int64_t timePointLastMouseOperate = 0;
-static const int DURATION_SECONDS_TO_WRITE_LOG = 2;
+static const int DURATION_SECONDS_TO_WRITE_LOG = /*60*/5;
 
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
@@ -23,7 +23,7 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 	if ((nCode >= 0) && bthWndKeyboard && bthMsgKeyboard && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
 	{
 		timePointLastKeyboardOperate = now;
-		PostMessage(bthWndKeyboard, bthMsgKeyboard, wp, lp);  // TODO(ichino) Logging if failed.
+		PostMessage(bthWndKeyboard, bthMsgKeyboard, (WPARAM)now, lp);  // TODO(ichino) Logging if failed.
 	}
 
 	return CallNextHookEx(bthKeyboardHook, nCode, wp, lp);
