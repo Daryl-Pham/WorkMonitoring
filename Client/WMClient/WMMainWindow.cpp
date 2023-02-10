@@ -48,39 +48,36 @@ void WMMainWindow::OnDestroy()
 
 LRESULT WMMainWindow::OnMessageKeyboard(WPARAM wParam, LPARAM lParam)
 {
-	(void)wParam;  // Unused
 	(void)lParam;  // Unused
 
-	auto now = std::chrono::system_clock::now();
-	int64_t writingUnixTime = (int64_t)wParam;
+	LRESULT result = ERROR_SUCCESS;
 
-	if (!m_pWritingData->ExistFile(KEYBOARD_OPERATE))
-	{
-		if(m_pWritingData->WriteData(KEYBOARD_OPERATE, now)) m_nLastTimeWriteKeyboardOperate = writingUnixTime;
-	}
-	else if (writingUnixTime - m_nLastTimeWriteKeyboardOperate >= DURATION_SECONDS_TO_WRITE_LOG
-		&& m_pWritingData->WriteData(KEYBOARD_OPERATE, now))
+	int64_t writingUnixTime = (int64_t)wParam;
+	auto timePoint = std::chrono::system_clock::from_time_t(writingUnixTime);
+
+	if (result = m_pWritingData->WriteData(KEYBOARD_OPERATE, timePoint))
 	{
 		m_nLastTimeWriteKeyboardOperate = writingUnixTime;
 	}
 
-	return 0;
+	return result;
 }
 
 LRESULT WMMainWindow::OnMessageMouse(WPARAM wParam, LPARAM lParam)
 {
-	(void)wParam;  // Unused
 	(void)lParam;  // Unused
 
-	//khanhpqtest - Check exist log files or not
+	LRESULT result = ERROR_SUCCESS;
 
-	auto now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	/*if (now - m_nLastTimeWriteMouseOperate >= DURATION_SECONDS_TO_WRITE_LOG && m_pWritingData->WriteData(MOUSE_OPERATE))
+	int64_t writingUnixTime = (int64_t)wParam;
+	auto timePoint = std::chrono::system_clock::from_time_t(writingUnixTime);
+
+	if (result = m_pWritingData->WriteData(MOUSE_OPERATE, timePoint))
 	{
-			m_nLastTimeWriteMouseOperate = now;
-	}*/
+		m_nLastTimeWriteMouseOperate = writingUnixTime;
+	}
 
-	return 0;
+	return result;
 }
 
 LRESULT WMMainWindow::OnMessageKeyboardAndMouseHook(WPARAM wParam, LPARAM lParam)

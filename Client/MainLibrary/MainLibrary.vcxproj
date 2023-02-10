@@ -114,6 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(VcpkgRoot)include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="BaseFileIO.h" />
     <ClInclude Include="BinaryFileIO.h" />
+    <ClInclude Include="File.hpp" />
     <ClInclude Include="FileIOInterface.h" />
     <ClInclude Include="MainLibrary.h" />
     <ClInclude Include="PlainTextFileIO.h" />

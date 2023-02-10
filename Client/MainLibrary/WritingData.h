@@ -27,6 +27,6 @@ private:
 public:
 	WritingData();
 	std::wstring GetFullPathDataFile(const OperateType type);
-	bool ExistFile(const OperateType type);
+	bool ExistFile(const OperateType type = MOUSE_OPERATE);
 	bool WriteData(const OperateType type, const std::chrono::system_clock::time_point &current);
 };
