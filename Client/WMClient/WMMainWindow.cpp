@@ -7,7 +7,7 @@
 #include "WritingData.h"
 
 static const int64_t DURATION_SECONDS_TO_WRITE_LOG = 300;
-LPCTSTR WINDOW_NAME = _T("BizTelework");
+LPCTSTR WINDOW_NAME = _T("WorkMonitoring");
 
 WMMainWindow::WMMainWindow()
 {
