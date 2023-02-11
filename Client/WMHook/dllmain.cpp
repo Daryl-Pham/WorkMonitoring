@@ -13,7 +13,7 @@ HINSTANCE hDllInst = NULL;
 
 static int64_t timePointLastKeyboardOperate = 0;
 static int64_t timePointLastMouseOperate = 0;
-static const int DURATION_SECONDS_TO_WRITE_LOG = /*60*/5;
+static const int DURATION_SECONDS_TO_WRITE_LOG = /*60*/10;
 
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
@@ -31,13 +31,16 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wp, LPARAM lp)
 
 LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wp, LPARAM lp)
 {
-	int64_t now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	int64_t periodTime = now - timePointLastMouseOperate;
-
-	if ((nCode >= 0) && bthWndMouse && bthMsgMouse && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
+	if (nCode >= 0 && wp == WM_LBUTTONDOWN)
 	{
-		timePointLastMouseOperate = now;
-		PostMessage(bthWndMouse, bthMsgMouse, wp, lp);  // TODO(ichino) Logging if failed.
+		int64_t now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+		int64_t periodTime = now - timePointLastMouseOperate;
+
+		if (bthWndMouse && bthMsgMouse && periodTime >= DURATION_SECONDS_TO_WRITE_LOG)
+		{
+			timePointLastMouseOperate = now;
+			PostMessage(bthWndMouse, bthMsgMouse, (WPARAM)now, lp);  // TODO(ichino) Logging if failed.
+		}
 	}
 
 	return CallNextHookEx(bthMouseHook, nCode, wp, lp);

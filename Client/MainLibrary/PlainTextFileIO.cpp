@@ -16,7 +16,8 @@ void PlainTextFileIO::Write(const Type& contentToWrite, bool appendContent)
 		Open(std::ios::out | std::ios::in | std::ios::trunc);
 	}
 
-	m_FileStream << contentToWrite;
+	m_FileStream << contentToWrite << L"\n";
+	
 }
 
 /// Reads text content word by word

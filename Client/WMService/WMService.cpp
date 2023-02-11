@@ -12,6 +12,7 @@ HANDLE                g_ServiceStopEvent = INVALID_HANDLE_VALUE;
 VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv);
 VOID WINAPI ServiceCtrlHandler(DWORD);
 DWORD WINAPI ServiceWorkerThread(LPVOID lpParam);
+VOID GoToExit();
 
 #define SERVICE_NAME  _T("WM Service")
 
@@ -21,7 +22,7 @@ int _tmain(int argc, TCHAR *argv[])
 
 	SERVICE_TABLE_ENTRY ServiceTable[] =
 	{
-		{ SERVICE_NAME, (LPSERVICE_MAIN_FUNCTION)ServiceMain },
+		{ LPWSTR("WM Service"), (LPSERVICE_MAIN_FUNCTION)ServiceMain},
 		{ NULL, NULL }
 	};
 
@@ -46,7 +47,7 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 	if (g_StatusHandle == NULL)
 	{
 		OutputDebugString(_T("My Sample Service: ServiceMain: RegisterServiceCtrlHandler returned error"));
-		goto EXIT;
+		GoToExit();
 	}
 
 	// Tell the service controller we are starting
@@ -83,7 +84,7 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 		{
 			OutputDebugString(_T("My Sample Service: ServiceMain: SetServiceStatus returned error"));
 		}
-		goto EXIT;
+		GoToExit();
 	}
 
 	// Tell the service controller we are started
@@ -124,13 +125,13 @@ VOID WINAPI ServiceMain(DWORD argc, LPTSTR *argv)
 	{
 		OutputDebugString(_T("My Sample Service: ServiceMain: SetServiceStatus returned error"));
 	}
-
-EXIT:
-	OutputDebugString(_T("My Sample Service: ServiceMain: Exit"));
-
-	return;
 }
 
+VOID GoToExit()
+{
+	OutputDebugString(_T("My Sample Service: ServiceMain: Exit"));
+	return;
+}
 
 VOID WINAPI ServiceCtrlHandler(DWORD CtrlCode)
 {
