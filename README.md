@@ -1,10 +1,10 @@
 # WorkMonitoring
 
-Install agent client on employee's machine to tracking and monitoring.
+Install the agent client on employee machines for tracking and monitoring purposes.
 
-Use CPPRestSDK to build server and receive client request.
+Utilize CPPRestSDK for building client-server communication.
 
-Use WPF - C# to build application for manager: to assign permission.
+Develop a WPF application using C# for managers to assign permissions.
 
-Use Cplusplus - MFC to build agent client application.
+Create the agent client application using C++ and MFC.
 
