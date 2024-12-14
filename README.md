@@ -6,7 +6,7 @@
 
 ~~Develop a WPF application using C# for managers to assign permissions.~~
 
-Create the agent client application using C++ and MFC.
+~~Create the agent client application using C++ and MFC.~~
 
 Move to: https://gitlab.com/khanhpqworking/workmonitoring.git
 
